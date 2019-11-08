@@ -63,9 +63,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         LatLng place = new LatLng(123123,3123123);
 
         CameraUpdate zoom = CameraUpdateFactory.zoomTo(12);
-        Map.addMarker(new MarkerOptions().position(place).title("Address"));
+        Map.addMarker(new MarkerOptions().position(location).title("Address"));
         //gMap.addMarker(new MarkerOptions().position(location).snippet(address).title("Address"));
-        Map.moveCamera(CameraUpdateFactory.newLatLng(place));
+        Map.moveCamera(CameraUpdateFactory.newLatLng(location));
         Map.animateCamera(zoom);
 
     }
