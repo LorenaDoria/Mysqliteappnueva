@@ -20,11 +20,12 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper  {
 
         BaseDeDatos.execSQL("create table estudiantes (codigo int primary key , nombre string, direccion string, latitud double, longitud double)");
 
-
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS estudiantes");
+        onCreate(db);
 
     }
 }

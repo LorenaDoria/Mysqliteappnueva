@@ -22,7 +22,7 @@
 					"types": ["country", "political"]
 				}
 			],
-			"formatted_address": "Cl. 24, Monteria, C�rdoba, Colombia",
+			"formatted_address": "Cl. 24, Monteria, Cordoba, Colombia",
 			"name":"Esteban",
 			"geometry": {
 				"bounds": {
@@ -59,16 +59,16 @@
 					"short_name": "Cl. 21",
 					"types": ["route"]
 				}, {
-					"long_name": "Monter�a",
-					"short_name": "Monter�a",
+					"long_name": "Monteria",
+					"short_name": "Monteria",
 					"types": ["locality", "political"]
 				}, {
-					"long_name": "Monter�a",
-					"short_name": "Monter�a",
+					"long_name": "Monteria",
+					"short_name": "Monteria",
 					"types": ["administrative_area_level_2", "political"]
 				}, {
-					"long_name": "C�rdoba",
-					"short_name": "C�rdoba",
+					"long_name": "Cordoba",
+					"short_name": "Cordoba",
 					"types": ["administrative_area_level_1", "political"]
 				}, {
 					"long_name": "Colombia",
@@ -76,7 +76,7 @@
 					"types": ["country", "political"]
 				}
 			],
-			"formatted_address": "Cl. 21, Monter�a, C�rdoba, Colombia",
+			"formatted_address": "Cl. 21, Monteria, Córdoba, Colombia",
 			"name":"Dario",
 			"geometry": {
 				"bounds": {
@@ -113,16 +113,16 @@
 					"short_name": "Cl. 23",
 					"types": ["route"]
 				}, {
-					"long_name": "Monter�a",
-					"short_name": "Monter�a",
+					"long_name": "Monteria",
+					"short_name": "Monteria",
 					"types": ["locality", "political"]
 				}, {
-					"long_name": "Monter�a",
-					"short_name": "Monter�a",
+					"long_name": "Monteria",
+					"short_name": "Monteria",
 					"types": ["administrative_area_level_2", "political"]
 				}, {
-					"long_name": "C�rdoba",
-					"short_name": "C�rdoba",
+					"long_name": "Cordoba",
+					"short_name": "Cordoba",
 					"types": ["administrative_area_level_1", "political"]
 				}, {
 					"long_name": "Colombia",
@@ -130,7 +130,7 @@
 					"types": ["country", "political"]
 				}
 			],
-			"formatted_address": "Cl. 23, Monter�a, C�rdoba, Colombia",
+			"formatted_address": "Cl. 23, Monteria, Cordoba, Colombia",
 			"name":"Estella",
 			"geometry": {
 				"bounds": {
@@ -167,16 +167,16 @@
 					"short_name": "Cl. 25",
 					"types": ["route"]
 				}, {
-					"long_name": "Monter�a",
-					"short_name": "Monter�a",
+					"long_name": "Monteria",
+					"short_name": "Monteria",
 					"types": ["locality", "political"]
 				}, {
-					"long_name": "Monter�a",
-					"short_name": "Monter�a",
+					"long_name": "Monteria",
+					"short_name": "Monteria",
 					"types": ["administrative_area_level_2", "political"]
 				}, {
-					"long_name": "C�rdoba",
-					"short_name": "C�rdoba",
+					"long_name": "Cordoba",
+					"short_name": "Cordoba",
 					"types": ["administrative_area_level_1", "political"]
 				}, {
 					"long_name": "Colombia",
@@ -184,7 +184,7 @@
 					"types": ["country", "political"]
 				}
 			],
-			"formatted_address": "Cl. 25, Monter�a, C�rdoba, Colombia",
+			"formatted_address": "Cl. 25, Monteria, Cordoba, Colombia",
 			"name":"Ivan",
 			"geometry": {
 				"bounds": {
@@ -221,16 +221,16 @@
 					"short_name": "Cl. 26",
 					"types": ["route"]
 				}, {
-					"long_name": "Monter�a",
-					"short_name": "Monter�a",
+					"long_name": "Monteria",
+					"short_name": "Monteria",
 					"types": ["locality", "political"]
 				}, {
-					"long_name": "Monter�a",
-					"short_name": "Monter�a",
+					"long_name": "Monteria",
+					"short_name": "Monteria",
 					"types": ["administrative_area_level_2", "political"]
 				}, {
-					"long_name": "C�rdoba",
-					"short_name": "C�rdoba",
+					"long_name": "Cordoba",
+					"short_name": "Cordoba",
 					"types": ["administrative_area_level_1", "political"]
 				}, {
 					"long_name": "Colombia",
@@ -238,7 +238,7 @@
 					"types": ["country", "political"]
 				}
 			],
-			"formatted_address": "Cl. 26, Monter�a, C�rdoba, Colombia",
+			"formatted_address": "Cl. 26, Monteria, Cordoba, Colombia",
 			"name":"German",
 			"geometry": {
 				"bounds": {
@@ -275,16 +275,16 @@
 					"short_name": "Cl. 27",
 					"types": ["route"]
 				}, {
-					"long_name": "Monter�a",
-					"short_name": "Monter�a",
+					"long_name": "Monteria",
+					"short_name": "Monteria",
 					"types": ["locality", "political"]
 				}, {
-					"long_name": "Monter�a",
-					"short_name": "Monter�a",
+					"long_name": "Monteria",
+					"short_name": "Monteria",
 					"types": ["administrative_area_level_2", "political"]
 				}, {
-					"long_name": "C�rdoba",
-					"short_name": "C�rdoba",
+					"long_name": "Cordoba",
+					"short_name": "Cordoba",
 					"types": ["administrative_area_level_1", "political"]
 				}, {
 					"long_name": "Colombia",
@@ -292,7 +292,7 @@
 					"types": ["country", "political"]
 				}
 			],
-			"formatted_address": "Cl. 27, Monter�a, C�rdoba, Colombia",
+			"formatted_address": "Cl. 27, Monteria, Cordoba, Colombia",
 			"name":"Andres",
 			"geometry": {
 				"bounds": {
@@ -329,16 +329,16 @@
 					"short_name": "Cl. 28",
 					"types": ["route"]
 				}, {
-					"long_name": "Monter�a",
-					"short_name": "Monter�a",
+					"long_name": "Monteria",
+					"short_name": "Monteria",
 					"types": ["locality", "political"]
 				}, {
-					"long_name": "Monter�a",
-					"short_name": "Monter�a",
+					"long_name": "Monteria",
+					"short_name": "Monteria",
 					"types": ["administrative_area_level_2", "political"]
 				}, {
-					"long_name": "C�rdoba",
-					"short_name": "C�rdoba",
+					"long_name": "Cordoba",
+					"short_name": "Cordoba",
 					"types": ["administrative_area_level_1", "political"]
 				}, {
 					"long_name": "Colombia",
@@ -346,7 +346,7 @@
 					"types": ["country", "political"]
 				}
 			],
-			"formatted_address": "Cl. 28, Monter�a, C�rdoba, Colombia",
+			"formatted_address": "Cl. 28, Monteria, Cordoba, Colombia",
 			"name":"carito",
 			"geometry": {
 				"bounds": {
@@ -383,16 +383,16 @@
 					"short_name": "Cl. 29",
 					"types": ["route"]
 				}, {
-					"long_name": "Monter�a",
-					"short_name": "Monter�a",
+					"long_name": "Monteria",
+					"short_name": "Monteria",
 					"types": ["locality", "political"]
 				}, {
-					"long_name": "Monter�a",
-					"short_name": "Monter�a",
+					"long_name": "Monteria",
+					"short_name": "Monteria",
 					"types": ["administrative_area_level_2", "political"]
 				}, {
-					"long_name": "C�rdoba",
-					"short_name": "C�rdoba",
+					"long_name": "Cordoba",
+					"short_name": "Cordoba",
 					"types": ["administrative_area_level_1", "political"]
 				}, {
 					"long_name": "Colombia",
@@ -400,7 +400,7 @@
 					"types": ["country", "political"]
 				}
 			],
-			"formatted_address": "Cl. 29, Monter�a, C�rdoba, Colombia",
+			"formatted_address": "Cl. 29, Monteria, Cordoba, Colombia",
 			"name":"estella",
 			"geometry": {
 				"bounds": {
@@ -437,16 +437,16 @@
 					"short_name": "Cl. 20",
 					"types": ["route"]
 				}, {
-					"long_name": "Monter�a",
-					"short_name": "Monter�a",
+					"long_name": "Monteria",
+					"short_name": "Monteria",
 					"types": ["locality", "political"]
 				}, {
-					"long_name": "Monter�a",
-					"short_name": "Monter�a",
+					"long_name": "Monteria",
+					"short_name": "Monteria",
 					"types": ["administrative_area_level_2", "political"]
 				}, {
-					"long_name": "C�rdoba",
-					"short_name": "C�rdoba",
+					"long_name": "Cordoba",
+					"short_name": "Cordoba",
 					"types": ["administrative_area_level_1", "political"]
 				}, {
 					"long_name": "Colombia",
@@ -454,7 +454,7 @@
 					"types": ["country", "political"]
 				}
 			],
-			"formatted_address": "Cl. 20, Monter�a, C�rdoba, Colombia",
+			"formatted_address": "Cl. 20, Monteria, Cordoba, Colombia",
 			"name":"Andrea",
 			"geometry": {
 				"bounds": {
@@ -491,16 +491,16 @@
 					"short_name": "Cl. 31",
 					"types": ["route"]
 				}, {
-					"long_name": "Monter�a",
-					"short_name": "Monter�a",
+					"long_name": "Monteria",
+					"short_name": "Monteria",
 					"types": ["locality", "political"]
 				}, {
-					"long_name": "Monter�a",
-					"short_name": "Monter�a",
+					"long_name": "Monteria",
+					"short_name": "Monteria",
 					"types": ["administrative_area_level_2", "political"]
 				}, {
-					"long_name": "C�rdoba",
-					"short_name": "C�rdoba",
+					"long_name": "Cordoba",
+					"short_name": "Cordoba",
 					"types": ["administrative_area_level_1", "political"]
 				}, {
 					"long_name": "Colombia",
@@ -508,7 +508,7 @@
 					"types": ["country", "political"]
 				}
 			],
-			"formatted_address": "Cl. 31, Monter�a, C�rdoba, Colombia",
+			"formatted_address": "Cl. 31, Monteria, Cordoba, Colombia",
 			"name":"Angella",
 			"geometry": {
 				"bounds": {
@@ -545,16 +545,16 @@
 					"short_name": "Cl. 32",
 					"types": ["route"]
 				}, {
-					"long_name": "Monter�a",
-					"short_name": "Monter�a",
+					"long_name": "Monteria",
+					"short_name": "Monteria",
 					"types": ["locality", "political"]
 				}, {
-					"long_name": "Monter�a",
-					"short_name": "Monter�a",
+					"long_name": "Monteria",
+					"short_name": "Monteria",
 					"types": ["administrative_area_level_2", "political"]
 				}, {
-					"long_name": "C�rdoba",
-					"short_name": "C�rdoba",
+					"long_name": "Cordoba",
+					"short_name": "Cordoba",
 					"types": ["administrative_area_level_1", "political"]
 				}, {
 					"long_name": "Colombia",
@@ -562,7 +562,7 @@
 					"types": ["country", "political"]
 				}
 			],
-			"formatted_address": "Cl. 32, Monter�a, C�rdoba, Colombia",
+			"formatted_address": "Cl. 32, Monteria, Cordoba, Colombia",
 			"name":"Jorge",
 			"geometry": {
 				"bounds": {

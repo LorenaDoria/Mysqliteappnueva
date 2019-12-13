@@ -1,12 +1,17 @@
 package com.example.mysqliteappnueva.ui.gallery;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,8 +21,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.mysqliteappnueva.AdminSQLiteOpenHelper;
 import com.example.mysqliteappnueva.Estudiante;
 import com.example.mysqliteappnueva.R;
+import com.example.mysqliteappnueva.ui.Adapter.MyAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,32 +35,80 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 public class GalleryFragment extends Fragment {
-    Button btn_cargar;
-    TextView text;
+    private ListView listView;
+    private Button btnLeerJson, btnBorrarBD;
+
 
     Estudiante es;
     ArrayList<Estudiante> estudiantes;
+    ArrayList<Estudiante> listaEstudiantes;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_cargar, container, false);
-        btn_cargar = (Button) root.findViewById(R.id.button);
-        text = (TextView) root.findViewById(R.id.textojson);
-        text.setMovementMethod(new ScrollingMovementMethod());
+        listView = root.findViewById(R.id.listView);
+        btnLeerJson = root.findViewById(R.id.btnLeerJson);
+        btnBorrarBD = root.findViewById(R.id.btnBorrarDataBase);
 
-        btn_cargar.setOnClickListener(new View.OnClickListener() {
+        renedrListView();
+
+        btnLeerJson.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 cargarJson();
-                mostrarJSON();
-
-
+                renedrListView();
             }
         });
-
+       btnBorrarBD.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               borrarBaseDeDatos();
+               renedrListView();
+           }
+       });
         return root;
-
     }
+    private void renedrListView() {
+        consultarListaEstudiantes();
+        MyAdapter myAdapter = new MyAdapter(getContext(), R.layout.item, listaEstudiantes);
+        listView.setAdapter(myAdapter);
+    }
+
+
+    private void consultarListaEstudiantes() {
+        AdminSQLiteOpenHelper  admin =new AdminSQLiteOpenHelper(getActivity(),"administracion", null, 1);
+        SQLiteDatabase db = admin.getReadableDatabase();
+
+        Estudiante estudiante;
+        listaEstudiantes = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + "estudiantes", null);
+
+        while (cursor.moveToNext()) {
+            estudiante = new Estudiante();
+            estudiante.setCodigo(cursor.getInt(0));
+            estudiante.setNombre(cursor.getString(1));
+            estudiante.setDireccion(cursor.getString(2));
+            estudiante.setLatitud(cursor.getDouble(3));
+            estudiante.setLongitud(cursor.getDouble(4));
+
+            listaEstudiantes.add(estudiante);
+        }
+        db.close();
+    }
+
+
+
+    private void borrarBaseDeDatos(){
+        AdminSQLiteOpenHelper  admin =new AdminSQLiteOpenHelper(getActivity(),"administracion", null, 1);
+
+        SQLiteDatabase db = admin.getReadableDatabase();
+        db.execSQL("delete from "+ "estudiantes");
+        db.close();
+    }
+
+
+
+    /*-------------------------------Lectura y registro en BD--------------------------*/
 
     public String leerJson() {
         String sContent = "";
@@ -72,43 +127,53 @@ public class GalleryFragment extends Fragment {
 
     public void cargarJson() {
         estudiantes = new ArrayList<>();
-        Estudiante e;
-        int code = 0;
         String json = leerJson();
 
         try {
             JSONObject obj = new JSONObject(json);
             JSONArray results = obj.getJSONArray("results");
             for (int i = 0; i < results.length(); i++) {
-                e = new Estudiante();
-                code = (int) (Math.random() * 10000) + 1000;
-                e.setCodigo(code);
+                es = new Estudiante();
+                int code = (int) (Math.random() * 10000) + 1000;
+                es.setCodigo(code);
                 JSONObject nombres = results.getJSONObject(i);
                 String nom = nombres.getString("name");
-                e.setNombre(nom);
+                es.setNombre(nom);
                 String dir = nombres.getString("formatted_address");
-                e.setDireccion(dir);
+                es.setDireccion(dir);
                 JSONObject geometry = nombres.getJSONObject("geometry");
                 JSONObject location = geometry.getJSONObject("location");
                 double lat = location.getDouble("lat");
-                e.setLatitud(lat);
+                es.setLatitud(lat);
                 double lon = location.getDouble("lng");
-                e.setLongitud(lon);
-                estudiantes.add(e);
+                es.setLongitud(lon);
+                estudiantes.add(es);
+                registrar();
             }
         } catch (JSONException ex) {
             Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void mostrarJSON() {
-        String cadena = "";
+    private void registrar() {
+
+        AdminSQLiteOpenHelper admin =new AdminSQLiteOpenHelper(getActivity(),"administracion", null, 1);
+        SQLiteDatabase base = admin.getWritableDatabase();
+
+
         for (int i = 0; i < estudiantes.size(); i++) {
-            cadena += "Nombre :" + estudiantes.get(i).getNombre() + "\nCódigo :" + estudiantes.get(i).getCodigo()
-                    + "\nDirección: " + estudiantes.get(i).getDireccion() + "\nLatitud: "+estudiantes.get(i).getLatitud()
-                    +"\nLongitud: "+estudiantes.get(i).getLongitud()+"\n\n";
+            ContentValues registro=new ContentValues();
+            registro.put("codigo",estudiantes.get(i).getCodigo());
+            registro.put("nombre",estudiantes.get(i).getNombre());
+            registro.put("direccion",estudiantes.get(i).getDireccion());
+            registro.put("latitud",estudiantes.get(i).getLatitud());
+            registro.put("longitud",estudiantes.get(i).getLongitud());
+
+            base.insert("estudiantes", null,registro);
         }
-        text.setText(""+cadena);
+
+            base.close();
+            Toast.makeText(getActivity(), "DATOS GUARDADOS", Toast.LENGTH_SHORT).show();
     }
 
 

@@ -1,12 +1,10 @@
 package com.example.mysqliteappnueva.ui.home;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -17,10 +15,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.mysqliteappnueva.AdminSQLiteOpenHelper;
-import com.example.mysqliteappnueva.MainActivity;
-import com.example.mysqliteappnueva.MapsActivity;
 import com.example.mysqliteappnueva.R;
-import com.example.mysqliteappnueva.ui.gallery.GalleryFragment;
 
 import java.util.ArrayList;
 
@@ -44,8 +39,9 @@ public class HomeFragment extends Fragment {
 
 
 
-        listado=(ListView) root.findViewById(R.id.lista);
-        AdminSQLiteOpenHelper admin =new AdminSQLiteOpenHelper(getActivity(),"administracion", null, 1);
+        //listado=(ListView) root.findViewById(R.id.lista);
+       // AdminSQLiteOpenHelper admin =new AdminSQLiteOpenHelper(getActivity(),"administracion", null, 1);
+
 
 
 
@@ -56,14 +52,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
-
-
-
-
-
-
-
-
 
             }
         });

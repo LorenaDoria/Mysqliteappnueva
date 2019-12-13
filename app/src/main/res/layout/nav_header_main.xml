@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
-    android:background="#2364B7"
+    android:background="#021344"
     android:gravity="bottom"
     android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -16,7 +16,7 @@
         android:id="@+id/imageView"
         android:layout_width="124dp"
         android:layout_height="70dp"
-        app:srcCompat="@drawable/mapa" />
+        app:srcCompat="@drawable/loc" />
 
     <TextView
         android:id="@+id/textView"

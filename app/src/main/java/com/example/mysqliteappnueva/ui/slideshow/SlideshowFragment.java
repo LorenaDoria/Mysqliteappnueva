@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,12 +20,13 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.mysqliteappnueva.AdminSQLiteOpenHelper;
+import com.example.mysqliteappnueva.MapFragment;
 import com.example.mysqliteappnueva.R;
 
 public class SlideshowFragment extends Fragment {
 
     EditText codigo,nombre,direccion,latitud,longitud;
-    Button  boton_registrar,boton_buscar,boton_eliminar;
+    Button  boton_registrar,boton_buscar,boton_eliminar, btnViewMap;
 
 
 
@@ -41,46 +43,55 @@ public class SlideshowFragment extends Fragment {
         boton_registrar = (Button) root.findViewById(R.id.btn_registrar);
         boton_buscar = (Button) root.findViewById(R.id.btn_buscar);
         boton_eliminar = (Button) root.findViewById(R.id.btn_eliminar);
+        btnViewMap = (Button) root.findViewById(R.id.btnViewMap);
 
         codigo=(EditText)root.findViewById(R.id.txt_codigo);
         nombre=(EditText ) root.findViewById(R.id.txt_name);
         direccion=(EditText) root.findViewById(R.id.txt_dir);
         latitud=(EditText) root.findViewById(R.id.txt_lat);
         longitud=(EditText) root.findViewById(R.id.txt_long);
+        latitud.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_NUMBER_FLAG_SIGNED);
+        longitud.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_NUMBER_FLAG_SIGNED);
 
-        final TextView textView = root.findViewById(R.id.text_slideshow);
-        slideshowViewModel.getText().observe(this, new Observer<String>() {
+
+        boton_registrar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-
-                boton_registrar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        registrar();
-
-                    }
-                });
-
-                boton_buscar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mostrar();
-
-                    }
-                });
-
-                boton_eliminar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        eliminarEstudiante();
-
-                    }
-                });
-
+            public void onClick(View v) {
+                registrar();
 
             }
         });
+
+        boton_buscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mostrar();
+
+            }
+        });
+
+        boton_eliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                eliminarEstudiante();
+
+            }
+        });
+
+        btnViewMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new MapFragment();
+                Bundle B = new Bundle();
+                B.putDouble("lat", Double.parseDouble(latitud.getText().toString()));
+                B.putDouble("lng", Double.parseDouble(longitud.getText().toString()));
+                fragment.setArguments(B);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment ).addToBackStack("List").commit();
+                //((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Location");
+
+            }
+        });
+
         return root;
 
 
