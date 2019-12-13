@@ -8,11 +8,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.mysqliteappnueva.ui.home.HomeFragment;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,7 +23,9 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Login extends AppCompatActivity {
 
@@ -28,6 +33,8 @@ public class Login extends AppCompatActivity {
     private EditText user, et1, et2;
     private EditText passw;
     private Cursor fila, fila2;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+
 
     ArrayList<Usuario> usuarios;
     Usuario us;
@@ -39,11 +46,12 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
+
         boton = findViewById(R.id.ingresar);
         user = findViewById(R.id.user);
         passw = findViewById(R.id.passw);
         cargarJson();
-        registrar();
+        //registrar();
 
 
         boton.setOnClickListener(new View.OnClickListener() {
@@ -123,13 +131,22 @@ public class Login extends AppCompatActivity {
         String usuario = user.getText().toString();
         String password = passw.getText().toString();
 
-        fila = base.rawQuery("select usuario, password from datos where usuario='" + usuario + "' and password='" + password+"'" , null);
+        fila = base.rawQuery("select usuario, password, rol from datos where usuario='" + usuario + "' and password='" + password+"'", null);
         if (fila.moveToFirst()) {
             String user = fila.getString(0);
             String pass = fila.getString(1);
+            String rol = fila.getString(2);
 
             if (usuario.equals(user) && password.equals(pass)) {
+                us.setUser(user);
+                us.setRol(rol);
+
+                sendLoginHistory();
                 Intent respuesta = new Intent(Login.this, MainActivity.class);
+
+                if (rol.equals("Administrador")) respuesta.putExtra("admin", true);
+                else respuesta.putExtra("admin", false);
+
                 startActivity(respuesta);
             } else {
                 Toast.makeText(getApplicationContext(), "Login Fallido", Toast.LENGTH_LONG).show();
@@ -137,40 +154,18 @@ public class Login extends AppCompatActivity {
         }else{
             Toast.makeText(getApplicationContext(), "Login Fallido", Toast.LENGTH_LONG).show();
         }
-
-
     }
 
-    public void prueba(){
-        String cadena ="";
-        UsuarioSQLiteOpenHelper admin = new UsuarioSQLiteOpenHelper(getApplicationContext(), "bdU", null, 1);
-        SQLiteDatabase base = admin.getWritableDatabase();
-
-        Cursor f = base.rawQuery("select usuario from datos",null);
-
-        if (f != null){
-            f.moveToFirst();
-            do {
-                cadena += "User:"+ f.getString(0);
-            }while(f.moveToNext());
-            Toast.makeText(getApplicationContext(), ""+cadena, Toast.LENGTH_LONG).show();
-        }else{
-            Toast.makeText(getApplicationContext(), "la base de datos está vacía", Toast.LENGTH_LONG).show();
-        }
-    }
-
-    public void login2() {
-        String usuario = user.getText().toString();
-        String password = passw.getText().toString();
-        for (int i = 0; i < usuarios.size(); i++) {
-            if (usuario.equals(usuarios.get(i).getUser()) && password.equals(usuarios.get(i).getPassw())) {
-                Intent respuesta = new Intent(Login.this, MainActivity.class);
-                startActivity(respuesta);
-                break;
-            } else {
-                Toast.makeText(getApplicationContext(), "NO FUNCIONO", Toast.LENGTH_LONG).show();
-            }
-        }
+    private Boolean sendLoginHistory() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+        Date myDate = new Date();
+        String date = dateFormat.format(myDate);
+        String hour = timeFormat.format(myDate);
+        us.setDate(date);
+        final DatabaseReference ref = database.getReference("registro-login");
+        ref.push().setValue(us);
+        return true;
     }
 
 

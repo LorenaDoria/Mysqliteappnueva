@@ -8,12 +8,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:568546972945:android:6bb99d94e4de6bc75468b0",
+        "mobilesdk_app_id": "1:568546972945:android:6ee41194e284b9705468b0",
         "android_client_info": {
           "package_name": "com.example.mysqliteappnueva"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "568546972945-ua7sfn7ij2ik5e72rlpamh00q6pheq6f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mysqliteappnueva",
+            "certificate_hash": "15ade636ca47d4542488f05b054d367da30f7c9d"
+          }
+        },
         {
           "client_id": "568546972945-ma399bs73rrkj5adl2jqbonk3m5e1bhc.apps.googleusercontent.com",
           "client_type": 3

@@ -1,6 +1,8 @@
 package com.example.mysqliteappnueva.ui.gallery;
 
+import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -24,7 +26,14 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.mysqliteappnueva.AdminSQLiteOpenHelper;
 import com.example.mysqliteappnueva.Estudiante;
 import com.example.mysqliteappnueva.R;
+import com.example.mysqliteappnueva.Usuario;
 import com.example.mysqliteappnueva.ui.Adapter.MyAdapter;
+import com.example.mysqliteappnueva.ui.Adapter.ResistroLoginAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,15 +42,20 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class GalleryFragment extends Fragment {
     private ListView listView;
-    private Button btnLeerJson, btnBorrarBD;
+    private Button btnLeerJson, btnBorrarBD, btnUsuarios;
+    private DatabaseReference database = FirebaseDatabase.getInstance().getReference("registro-login");
+
 
 
     Estudiante es;
     ArrayList<Estudiante> estudiantes;
     ArrayList<Estudiante> listaEstudiantes;
+    List<Usuario> listaUsuarios;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -49,7 +63,7 @@ public class GalleryFragment extends Fragment {
         listView = root.findViewById(R.id.listView);
         btnLeerJson = root.findViewById(R.id.btnLeerJson);
         btnBorrarBD = root.findViewById(R.id.btnBorrarDataBase);
-
+        btnUsuarios = root.findViewById(R.id.btn_user);
         renedrListView();
 
         btnLeerJson.setOnClickListener(new View.OnClickListener() {
@@ -59,11 +73,21 @@ public class GalleryFragment extends Fragment {
                 renedrListView();
             }
         });
+
        btnBorrarBD.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
                borrarBaseDeDatos();
                renedrListView();
+           }
+       });
+
+       btnUsuarios.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Boolean admin = getActivity().getIntent().getBooleanExtra("admin", false);
+               if (admin) fetchData();
+               else Toast.makeText(getContext(), "Acceso Denegado", Toast.LENGTH_LONG).show();
            }
        });
         return root;
@@ -105,9 +129,30 @@ public class GalleryFragment extends Fragment {
         db.execSQL("delete from "+ "estudiantes");
         db.close();
     }
+    /*-------------------------------Leer Firebase BD----------------------------------*/
+    private void fetchData() {
+        listaUsuarios = new ArrayList<>();
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                listaUsuarios.clear();
+                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                    Usuario user = userSnapshot.getValue(Usuario.class);
+                    listaUsuarios.add(user);
+                    database.removeEventListener(this);
+                }
+                    Collections.reverse(listaUsuarios);
+                    ResistroLoginAdapter adapter = new ResistroLoginAdapter(getActivity(), listaUsuarios);
+                    listView.setAdapter(adapter);
 
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
 
+    }
     /*-------------------------------Lectura y registro en BD--------------------------*/
 
     public String leerJson() {

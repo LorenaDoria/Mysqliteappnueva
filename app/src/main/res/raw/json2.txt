@@ -1,1 +1,12 @@
-{"results":[{"usuario":"LuisGarcia","password":"xcsd23","rol":"Administrador"},{"usuario":"pepe","password":"sdfg","rol":"Operario"},{"usuario":"andres","password":"123456","rol":"Operario"},{"usuario":"pedro","password":"34445","rol":"Operario"},{"usuario":"luzadriana","password":"xssf34","rol":"Operario"},{"usuario":"SuperAdministrador","password":"123456","rol":"Administrador"},{"usuario":"lorena","password":"123456","rol":"Operario"},{"usuario":"cindy","password":"xcsd23","rol":"Administrador"}]}
+{
+    "results":[
+        {"usuario":"LuisGarcia","password":"xcsd23","rol":"Administrador"},
+        {"usuario":"pepe","password":"sdfg","rol":"Operario"},
+        {"usuario":"andres","password":"123456","rol":"Operario"},
+        {"usuario":"pedro","password":"34445","rol":"Operario"},
+        {"usuario":"luzadriana","password":"xssf34","rol":"Operario"},
+        {"usuario":"SuperAdministrador","password":"123456","rol":"Administrador"},
+        {"usuario":"lorena","password":"123456","rol":"Operario"},
+        {"usuario":"cindy","password":"123456","rol":"Administrador"}
+    ]
+}

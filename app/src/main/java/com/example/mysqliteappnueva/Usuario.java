@@ -5,14 +5,17 @@ public class Usuario {
     private String user;
     private String passw;
     private String rol;
+    private String date;
 
+
+    public Usuario(String user, String passw, String rol, String date) {
+        this.user = user;
+        this.passw= passw;
+        this.rol = rol;
+        this.date = date;
+    }
 
     public Usuario() {
-
-        user = "";
-        passw= "";
-        rol ="";
-
     }
 
     public String getUser() {
@@ -37,5 +40,13 @@ public class Usuario {
 
     public void setRol(String rol) {
         this.rol = rol;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }
